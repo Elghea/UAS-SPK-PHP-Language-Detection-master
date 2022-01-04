@@ -1,35 +1,26 @@
 PHP Language Detection
 ======================
-A pure PHP implementation of language detection (of arbitrary text) based on 
-n-gram profiles. It contains a pre-trained model that can recognize: dutch (nl), 
-english (en), german (de), french (fr), spanish (es), indonesian (id), japanese 
-(jp) and portugese (pt) (the "twitter languages").
 
-How does it work?
-=================
-The etc/ directory contains an paper that explains the algorithm behind the 
-classifier. A small excerpt:
+Kami menjelaskan di sini pendekatan berbasis N-gram untuk kategorisasi teks yaitu
+toleran terhadap kesalahan tekstual. Sistemnya kecil, cepat dan kuat. Sistem ini
+bekerja sangat baik untuk klasifikasi bahasa, mencapai dalam satu tes 99,8%
+tingkat klasifikasi yang benar pada artikel newsgroup Usenet yang ditulis dalam berbeda
+bahasa. Sistem ini juga bekerja dengan cukup baik untuk mengklasifikasikan artikel dari
+sejumlah newsgroup berorientasi komputer yang berbeda menurut subjek,
+mencapai setinggi 80% tingkat klasifikasi yang benar. Ada juga beberapa
+arah yang jelas untuk meningkatkan kinerja klasifikasi sistem di
+kasus-kasus di mana ia tidak melakukannya dengan baik.
 
-We describe here an N-gram-based approach to text categorization that is 
-tolerant of textual errors. The system is small, fast and robust. This system 
-worked very well for language classification, achieving in one test a 99.8% 
-correct classification rate on Usenet newsgroup articles written in different 
-languages. The system also worked reasonably well for classifying articles from 
-a number of different computer-oriented newsgroups according to subject, 
-achieving as high as an 80% correct classification rate. There are also several 
-obvious directions for improving the system's classification performance in 
-those cases where it did not do as well.
+Sistem ini didasarkan pada penghitungan dan perbandingan profil frekuensi N-gram.
+Pertama, kami menggunakan sistem untuk menghitung profil pada data set pelatihan yang mewakili
+berbagai kategori, misalnya sampel bahasa atau sampel konten newsgroup.
+Kemudian sistem menghitung profil untuk dokumen tertentu yang akan dibuat
+rahasia.
 
-The system is based on calculating and comparing profiles of N-gram frequencies. 
-First, we use the system to compute profiles on training set data that represent 
-the various categories, e.g., language samples or newsgroup content samples. 
-Then the system computes a profile for a particular document that is to be 
-classified.
-
-Finally, the system computes a distance measure between the document's profile 
-and each of the category profiles. The system selects the category whose profile 
-has the smallest distance to the document's profile. The profiles involved are 
-quite small, typically 10K bytes for a category
+Akhirnya, sistem menghitung ukuran jarak antara profil dokumen
+dan masing-masing profil kategori. Sistem memilih kategori yang profilnya
+memiliki jarak terkecil ke profil dokumen. Profil yang terlibat adalah
+cukup kecil, biasanya 10K byte untuk suatu kategori
 
 Example
 =======
